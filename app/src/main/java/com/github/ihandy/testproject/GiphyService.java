@@ -1,5 +1,7 @@
 package com.github.ihandy.testproject;
 
+import com.github.ihandy.testproject.model.Giphy;
+
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;

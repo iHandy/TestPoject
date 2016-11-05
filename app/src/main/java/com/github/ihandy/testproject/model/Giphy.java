@@ -1,4 +1,4 @@
-package com.github.ihandy.testproject;
+package com.github.ihandy.testproject.model;
 
 import java.util.List;
 

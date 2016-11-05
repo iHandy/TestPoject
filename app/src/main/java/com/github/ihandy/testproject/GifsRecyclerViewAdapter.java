@@ -1,12 +1,15 @@
 package com.github.ihandy.testproject;
 
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.github.ihandy.testproject.model.GifItem;
 import com.koushikdutta.ion.Ion;
+import com.koushikdutta.ion.builder.AnimateGifMode;
 
 import java.util.List;
 
@@ -16,10 +19,10 @@ import java.util.List;
 
 public class GifsRecyclerViewAdapter extends RecyclerView.Adapter<GifsRecyclerViewAdapter.GifItemViewHolder> {
 
-    private List<GifItem> gifItems;
+    private List<GifItem> mGifItems;
 
-    public GifsRecyclerViewAdapter(List<GifItem> gifItems) {
-        this.gifItems = gifItems;
+    public GifsRecyclerViewAdapter(@Nullable List<GifItem> gifItems) {
+        this.mGifItems = gifItems;
     }
 
     @Override
@@ -30,13 +33,16 @@ public class GifsRecyclerViewAdapter extends RecyclerView.Adapter<GifsRecyclerVi
 
     @Override
     public void onBindViewHolder(GifItemViewHolder holder, int position) {
-        Ion.with(holder.gifImageView).load(gifItems.get(position).getUrl());
+        GifItem gifItem = mGifItems.get(position);
+        Ion.with(holder.gifImageView)
+                .animateGif(AnimateGifMode.ANIMATE)
+                .placeholder(R.drawable.dancing_abe)
+                .load(gifItem.getUrl());
     }
-
 
     @Override
     public int getItemCount() {
-        return gifItems != null ? gifItems.size() : 0;
+        return mGifItems != null ? mGifItems.size() : 0;
     }
 
     @Override
@@ -49,8 +55,8 @@ public class GifsRecyclerViewAdapter extends RecyclerView.Adapter<GifsRecyclerVi
         super.onViewDetachedFromWindow(holder);
     }
 
-    public void setData(List<GifItem> data) {
-        this.gifItems = data;
+    public void setData(@Nullable List<GifItem> data) {
+        this.mGifItems = data;
         notifyDataSetChanged();
     }
 

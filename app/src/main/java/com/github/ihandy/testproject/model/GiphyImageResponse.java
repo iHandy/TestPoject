@@ -1,4 +1,4 @@
-package com.github.ihandy.testproject;
+package com.github.ihandy.testproject.model;
 
 /**
  * Created by soloviev on 05.11.2016.
